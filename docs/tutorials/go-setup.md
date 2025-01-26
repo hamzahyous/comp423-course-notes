@@ -50,7 +50,11 @@ The third and final part of the repository setup is to link the GitHub repositor
 ```bash
 git remote add origin https://github.com/<your-username>/go-tutorial.git
 ```
-- Note: Check your default branch name with the subcommand `git branch`. The default branch is usually main, but older versions of git had the default branch named `master`. If yours is not `main`, you should make it `main` with the following command: `git branch -M main`.
+
+!!! Note
+
+    Check your default branch name with the subcommand `git branch`. The default branch is usually main, but older versions of git had the default branch named `master`. If yours is not `main`, you should make it `main` with the following command: `git branch -M main`.
+
 - Now you are ready to push your local commits to the GitHub repository. 
 ``` bash
 git push --set-upstream origin main
@@ -72,8 +76,11 @@ Additionally, we will have a `devcontainer.json` file that defines a consistent 
 1. Open the `go-tutorial` directory in VSCode. This is done by clicking File then Open Folder. 
 2. In VSCode, click extensions and install the **Dev Containers** extension.
 3. Also ensure that the *Go* plugin is active by checking the *Extensions* sidebar for "Go". If it is missing, you can manually install it using `Ctrl+Shift+X` 
-4. At the root of your project, create a `.devcontainer` directory (considered hidden with the .) with the following file inside: `.devcontainer/devcontainer.json'. 
-**Note:** This file defines the configuration of our development environment. 
+4. At the root of your project, create a `.devcontainer` directory (considered hidden with the .) with the following file inside: ```.devcontainer/devcontainer.json```. 
+
+!!! Info
+
+    The ```devcontainer.json``` file defines the configuration of our development environment. 
 
 ``` json
 {
@@ -96,12 +103,12 @@ This configuration specifies the following:
 
 - `name`: Choose a relevant name for the Dev Container. 
 - `image`: The Docker image to use, for us it is the latest version of a Golang environment. 
-- `customizations`: Settings spesific to Go are added, setting the `GOPATH` directory for the containerized environment. `"go.formatTool": "gofmt"` specifies the tool for formatting Go code. 
+- `customizations`: Settings specific to Go are added, setting the `GOPATH` directory for the containerized environment. `"go.formatTool": "gofmt"` specifies the tool for formatting Go code. 
 - `postCreateCommand`: A command that is run after the container is created. For us, it is `go mod tidy`, which fetches and organizes Go dependencies listed in `go.mod`.
 
 ### Part 2 - Add Golang Dependancy Configuration 
 
-`go.mod` is the Go spesific file for listing the project's required dependencies, along with their versions. Go is unique because the `go.mod` file is automatically generated and managed with Go commands. To create it, run `go mod init github.com/<your-username>/go-tutorial` in the VS Code terminal. <br>
+`go.mod` is the Go specific file for listing the project's required dependencies, along with their versions. Go is unique because the `go.mod` file is automatically generated and managed with Go commands. To create it, run `go mod init github.com/<your-username>/go-tutorial` in the VS Code terminal. <br>
 
 Managing these dependencies is done primarily with two commands, `go get` and `go mod tidy`. `go mod` specifies the subcommand mod, which is used generally for managing depdencies and initializing project structure. 
 
@@ -131,7 +138,7 @@ go-tutorial/
 ```
 
 ### Part 1 - Creating main.go
-Currently, we need to create a file to write our "Hello COMP423" program. At the root of the project, you need to create a file called `main.go`. If you haven't written in Go before, you can learn more about the syntax [here](https://medium.com/@manus.can/learn-golang-basic-syntax-in-10-minutes-48608a315896). However, for simplicity's sake, I will provide the code below and walk you through it. 
+Currently, we need to create a file to write our "Hello COMP423" program. At the root of the project, you need to create a file called `main.go`. If you haven't written in Go before, you can learn more about the syntax [here](https://medium.com/@manus.can/learn-golang-basic-syntax-in-10-minutes-48608a315896). However, for simplicity's sake, there will be code provided below to walk you through it. 
 
 ```go
 package main
@@ -140,10 +147,11 @@ func main() {
     fmt.Println("Hello COMP423")
 }
 ```
-Relevant bits explained:
-- `package main`: Defines the main package. Where execution begins. 
-- `import "fmt"`: Imports the `fmt` (format) package for formatted I/O.
-- `func main() {...}`: Entry point for our Go program. 
+!!! Info
+
+    - `package main`: Defines the main package. Where execution begins. 
+    - `import "fmt"`: Imports the `fmt` (format) package for formatted I/O.
+    - `func main() {...}`: Entry point for our Go program. 
 
 Now that we've written our simple program, we can move onto running it. 
 
@@ -151,35 +159,27 @@ Now that we've written our simple program, we can move onto running it.
 
 For this portion, a couple subcommands are useful to know to display to standard output. 
 
-- `run` subcommand: Compiles and executes the program in a single step. Does NOT create a permanent binary file. Automatic execution of the compiled program. Good for testing or debugging your program.
-```bash
-go run <file>.go
-```
 
-- `build` subcommand: Compiles the program into a standalone executable (binary). Does NOT execute the compiled program. Produces a binary file (`main` or `main.exe` on Windows) which you can run seperately.
+- `go build` : Compiles the program into a standalone executable (binary). Does __NOT__ execute the compiled program. Produces a binary file (`main`) which you can run seperately.
 ```bash
 go build <file>.go
 ```
 
-In our case, first we can do `go run main.go`. This should print the following to standard output:
+- `go run` : Compiles and executes the program in a single step. Does __NOT__ create a permanent binary file. Automatic execution of the compiled program. Good for testing or debugging your program.
+```bash
+go run <file>.go
+```
+
+First we can try `go run main.go`. This should print the following to standard output:
 
 ```bash
 Hello COMP423
 ```
 
-Then, if we want to build an binary executable file, we can do:
+If we wanted to manually compile the executable and then run it we can type:
 ```bash
 go build main.go. 
-```
-
-To run this binary file on Mac, we can do:
-```bash
 ./main
 ```
 
-On Windows, it would be:
-```bash
-main.exe
-```
-
-This concludes my tutorial for setting up a DevContainer specific to Golang, then writing and running a simple "Hello COMP423" program. If you've made it to here, congratulations!
+This concludes the tutorial for setting up a DevContainer specific to Golang, then writing and running a simple "Hello COMP423" program. If you've made it to here, congratulations!

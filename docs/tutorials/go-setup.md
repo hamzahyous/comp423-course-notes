@@ -75,8 +75,7 @@ Additionally, we will have a `devcontainer.json` file that defines a consistent 
 
 1. Open the `go-tutorial` directory in VSCode. This is done by clicking File then Open Folder. 
 2. In VSCode, click extensions and install the **Dev Containers** extension.
-3. Also ensure that the *Go* plugin is active by checking the *Extensions* sidebar for "Go". If it is missing, you can manually install it using `Ctrl+Shift+X` 
-4. At the root of your project, create a `.devcontainer` directory (considered hidden with the .) with the following file inside: ```.devcontainer/devcontainer.json```. 
+3. At the root of your project, create a `.devcontainer` directory (considered hidden with the .) with the following file inside: ```.devcontainer/devcontainer.json```. 
 
 !!! Info
 
@@ -115,6 +114,8 @@ Managing these dependencies is done primarily with two commands, `go get` and `g
 - `go get`: This automatically updates the `go.mod` and `go.sum` files. 
     - Format: `go get <module-path>@<version>`
 - `go mod tidy`: Adds missing dependencies required by your project. Also removes unused dependencies from `go.mod` and `go.sum`.
+
+In our case, our Hello COMP423 program has no external dependencies, you can skip over the part on managing dependencies and just run `go mod init github.com/<your-username>/go-tutorial`.
 
 ### Part 3 - Reopening the project in a VSCode DevContainer
 Now that we've created the project, it's time to actually open it within a VSCode Dev Container. To reopen the project in the container, press `Ctrl+Shift+P` or (`Cmd+Shift+P` on Mac). This will open a window to type, where you should write "Dev Containers: Reopen in Container," selecting the option that pops up. This process may take a few minutes as you are downloading the image. 

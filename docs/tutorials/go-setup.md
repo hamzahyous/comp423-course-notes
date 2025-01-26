@@ -133,7 +133,6 @@ go-tutorial/
 ├── .devcontainer/
 │   └── devcontainer.json
 ├── go.mod
-├── go.sum (auto-generated after `go mod tidy`)
 └── main.go (we haven't made this yet)
 
 ```

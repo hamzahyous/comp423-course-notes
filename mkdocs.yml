@@ -6,6 +6,12 @@ theme:
     - content.code.select
     - content.code.annotatevscode
 
+nav:
+  - Welcome to MkDocs: index.md
+  - Tutorials:
+    - Golang DevContainer: tutorials/go-setup.md
+
+
 markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true

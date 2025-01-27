@@ -3,7 +3,7 @@
 * Reviewer: [Katun Li](https://github.com/katunli)
 
 ## i. Introduction
-This is a tutorial on how to set up a DevContainer in VSCode spesific to the Go programming Language (Golang). Some of the information provided is thanks to the [Mkdocs tutorial](https://comp423-25s.github.io/resources/MkDocs/tutorial/) completed prior to this assignment, and will be cited throughout as such. 
+This is a tutorial on how to set up a DevContainer in VS Code spesific to the Go programming Language (Golang). Some of the information provided is thanks to the [Mkdocs tutorial](https://comp423-25s.github.io/resources/MkDocs/tutorial/) completed prior to this assignment, and will be cited throughout as such. 
 To begin this process, there are a few [**prerequisite softwares**](https://comp423-25s.github.io/resources/MkDocs/tutorial/) you must have installed, and a list is provided below.
 
 - A Github account: If you do not have one, [click here](https://github.com/)
@@ -73,8 +73,8 @@ Additionally, we will have a `devcontainer.json` file that defines a consistent 
 
 ### Part 1 - Add Development Container Configuration
 
-1. Open the `go-tutorial` directory in VSCode. This is done by clicking File then Open Folder. 
-2. In VSCode, click extensions and install the **Dev Containers** extension.
+1. Open the `go-tutorial` directory in VS Code. This is done by clicking File then Open Folder. 
+2. In VS Code, click extensions and install the **Dev Containers** extension.
 3. At the root of your project, create a `.devcontainer` directory (considered hidden with the .) with the following file inside: ```.devcontainer/devcontainer.json```. 
 
 !!! Info
@@ -93,8 +93,7 @@ Additionally, we will have a `devcontainer.json` file that defines a consistent 
       },
       "extensions": ["golang.go"]
     }
-  },
-  "postCreateCommand": "go mod tidy"
+  }
 }
 ```
 
@@ -102,12 +101,11 @@ This configuration specifies the following:
 
 - `name`: Choose a relevant name for the Dev Container. 
 - `image`: The Docker image to use, for us it is the latest version of a Golang environment. 
-- `customizations`: Settings specific to Go are added, setting the `GOPATH` directory for the containerized environment. `"go.formatTool": "gofmt"` specifies the tool for formatting Go code. 
-- `postCreateCommand`: A command that is run after the container is created. For us, it is `go mod tidy`, which fetches and organizes Go dependencies listed in `go.mod`.
+- `customizations`: Settings specific to Go are added, setting the `GOPATH` directory for the containerized environment. `"go.formatTool": "gofmt"` specifies the tool for formatting Go code.
 
-### Part 2 - Add Golang Dependancy Configuration 
+### Part 2 - Reopening the project in a VS Code DevContainer & `go.mod` setup 
 
-`go.mod` is the Go specific file for listing the project's required dependencies, along with their versions. Go is unique because the `go.mod` file is automatically generated and managed with Go commands. To create it, run `go mod init github.com/<your-username>/go-tutorial` in the VS Code terminal. <br>
+`go.mod` is the Go specific file for listing the project's required dependencies, along with their versions. Go is unique because the `go.mod` file is automatically generated and managed with Go commands.
 
 Managing these dependencies is done primarily with two commands, `go get` and `go mod tidy`. `go mod` specifies the subcommand mod, which is used generally for managing depdencies and initializing project structure. 
 
@@ -115,12 +113,19 @@ Managing these dependencies is done primarily with two commands, `go get` and `g
     - Format: `go get <module-path>@<version>`
 - `go mod tidy`: Adds missing dependencies required by your project. Also removes unused dependencies from `go.mod` and `go.sum`.
 
-In our case, our Hello COMP423 program has no external dependencies, you can skip over the part on managing dependencies and just run `go mod init github.com/<your-username>/go-tutorial`.
+In our case, our Hello COMP423 program has no external dependencies, you can skip over the part on managing dependencies for now.
 
-### Part 3 - Reopening the project in a VSCode DevContainer
-Now that we've created the project, it's time to actually open it within a VSCode Dev Container. To reopen the project in the container, press `Ctrl+Shift+P` or (`Cmd+Shift+P` on Mac). This will open a window to type, where you should write "Dev Containers: Reopen in Container," selecting the option that pops up. This process may take a few minutes as you are downloading the image. 
+Now that we've created the project, it's time to actually open it within a VS Code Dev Container. To reopen the project in the container, press `Ctrl+Shift+P` or (`Cmd+Shift+P` on Mac). This will open a window to type, where you should write "Dev Containers: Reopen in Container," selecting the option that pops up. This process may take a few minutes as you are downloading the image. 
 
-Once the dev setup is completed, you can hit "Kill Terminal" on your VSCode terminal, and open a new one, running `go version` which should show you what version of Golang your container is running. As of now this should be version 1.20.
+Once the dev setup is completed, you can hit "Kill Terminal" on your VS Code terminal, and open a new one, running `go version` which should show you what version of Golang your container is running. As of now this should be version 1.20.
+
+At this point, we have to run the command to actually create the `go.mod` file: <br>
+To create it, run the following command in the VS Code terminal: <br>
+`go mod init github.com/<your-username>/go-tutorial`
+
+!!! Info
+
+    - Please make sure that `go.mod` is in the root directory of your project. If it is in the .devcontainer, you need to drag it to the root folder.
 
 ## iv. Hello COMP423
 
@@ -138,7 +143,7 @@ go-tutorial/
 ```
 
 ### Part 1 - Creating main.go
-Currently, we need to create a file to write our "Hello COMP423" program. At the root of the project, you need to create a file called `main.go`. If you haven't written in Go before, you can learn more about the syntax [here](https://medium.com/@manus.can/learn-golang-basic-syntax-in-10-minutes-48608a315896). However, for simplicity's sake, there will be code provided below to walk you through it. 
+Currently, we need to create a file to write our "Hello COMP423" program. At the root of the project, you need to create a file called `main.go`. If you haven't written in Go before, you can learn more about the syntax [here](https://medium.com/@manus.can/learn-golang-basic-syntax-in-10-minutes-48608a315896). However, for simplicity's sake, there will be code provided below that I will walk you through. 
 
 ```go
 package main
